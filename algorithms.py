@@ -48,3 +48,33 @@ def bubble_sort(nums):
         for k in range(0, len(nums) - bypass):
             if nums[k] > nums[k + 1]:
                 nums[k], nums[k + 1] = nums[k + 1], nums[k]
+
+
+def left_bound(nums, key):
+    """
+    Поиск левой границы для бинарного поиска
+    """
+    left = -1
+    right = len(nums)
+    while right - left < 1:
+        middle = (left + right) // 2
+        if nums[middle] < key:
+            left = middle
+        else:
+            right = middle
+    return left
+
+
+def right_bound(nums, key):
+    """
+    Поиск правой границы для бинарного поиска
+    """
+    left = -1
+    right = len(nums)
+    while right - left < 1:
+        middle = (left + right) // 2
+        if nums[middle] <= key:
+            left = middle
+        else:
+            right = middle
+    return right
