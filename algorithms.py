@@ -50,31 +50,24 @@ def bubble_sort(nums):
                 nums[k], nums[k + 1] = nums[k + 1], nums[k]
 
 
-def left_bound(nums, key):
+def binSearch(self, nums, target, leftBias):
     """
-    Поиск левой границы для бинарного поиска
+    Бинарный поиск левой и правой границы
+    :param leftBias: True - левая границв, False - правая граница
+    :return: возвращает id одной из границы
     """
-    left = -1
-    right = len(nums)
-    while right - left < 1:
-        middle = (left + right) // 2
-        if nums[middle] < key:
-            left = middle
-        else:
-            right = middle
-    return left
-
-
-def right_bound(nums, key):
-    """
-    Поиск правой границы для бинарного поиска
-    """
-    left = -1
-    right = len(nums)
-    while right - left < 1:
-        middle = (left + right) // 2
-        if nums[middle] <= key:
-            left = middle
-        else:
-            right = middle
-    return right
+    l, r = 0, len(nums) - 1
+    i = -1
+    while l <= r:
+        m = (l + r) // 2
+        if nums[m] < target:
+            l = m + 1
+        elif nums[m] > target:
+            r = m - 1
+        else:  # if nums[m] == target
+            i = m
+            if leftBias:  # if I'm searching from left-side
+                r = m - 1
+            else:  # if I'm searching from right-side
+                l = m + 1
+    return i
