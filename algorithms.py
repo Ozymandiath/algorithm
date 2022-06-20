@@ -50,11 +50,12 @@ def bubble_sort(nums):
                 nums[k], nums[k + 1] = nums[k + 1], nums[k]
 
 
-def binSearch(self, nums, target, leftBias):
+def binSearch(nums, target, leftBias):
     """
     Бинарный поиск левой и правой границы
     :param leftBias: True - левая границв, False - правая граница
     :return: возвращает id одной из границы
+    O(log n)
     """
     l, r = 0, len(nums) - 1
     i = -1
