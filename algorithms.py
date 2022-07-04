@@ -72,3 +72,25 @@ def binSearch(nums, target, leftBias):
             else:  # if I'm searching from right-side
                 l = m + 1
     return i
+
+
+def rle(stroka):
+    """
+    Алгоритм сжатия одинаковых символов в последовательности
+    """
+
+    def pack(s, cnt):
+        if cnt > 1:
+            return s + str(cnt)
+        return s
+
+    lastsym = stroka[0]
+    lastpos = 0
+    ans = []
+    for i in range(len(stroka)):
+        if stroka[i] != lastsym:
+            ans.append(pack(lastsym, i - lastpos))
+            lastsym = stroka[i]
+            lastpos = i
+    ans.append(pack(lastsym, len(stroka) - lastpos))
+    return "".join(ans)
