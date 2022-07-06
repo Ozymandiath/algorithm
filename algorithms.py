@@ -94,3 +94,23 @@ def rle(stroka):
             lastpos = i
     ans.append(pack(lastsym, len(stroka) - lastpos))
     return "".join(ans)
+
+
+def countsort(nums):
+    """
+    Сортировка подсчетом
+    O(N+K)
+    """
+    minval = min(nums)
+    maxval = max(nums)
+    k = (maxval - minval + 1)
+    count = [0] * k
+    for now in nums:
+        count[now - minval] += 1
+    nowpos = 0
+    for i in range(0, k):
+        for val in range(count[i]):
+            nums[nowpos] = i + minval
+            nowpos += 1
+
+
